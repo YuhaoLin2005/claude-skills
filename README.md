@@ -1,6 +1,6 @@
 # Claude Code Skills & Plugins — Agent Skills for Every Coding Tool
 
-**345 production-ready Claude Code skills, plugins, and agent skills for 13 AI coding tools.**
+**346 production-ready Claude Code skills, plugins, and agent skills for 13 AI coding tools.**
 
 The most comprehensive open-source library of Claude Code skills and agent plugins — also works with OpenAI Codex, Gemini CLI, Cursor, and 9 more coding agents. Reusable expertise packages covering engineering, DevOps, marketing (incl. AEO — Answer Engine Optimization for LLM citation), security (PreToolUse hooks), compliance, C-level advisory (incl. founder-mode CFO/CMO/CRO/CPO/COO/CHRO/CISO/GC/CDO/CAIO/CCO/VPE personas + 21 /cs:* slash commands), productivity (capture/email/reflect), an academic research stack (litreview/grants/dossier/patent/syllabus/pulse/notebooklm + hybrid router), and enterprise Research Operations (clinical-research/research-finance/market-research/product-research, v2.9.0).
 
@@ -26,10 +26,10 @@ The most comprehensive open-source library of Claude Code skills and agent plugi
 Claude Code skills (also called agent skills or coding agent plugins) are modular instruction packages that give AI coding agents domain expertise they don't have out of the box. Each skill includes:
 
 - **SKILL.md** — structured instructions, workflows, and decision frameworks
-- **Python tools** — 579 CLI scripts (all stdlib-only, zero pip installs)
+- **Python tools** — 582 CLI scripts (all stdlib-only, zero pip installs)
 - **Reference docs** — 702 templates, checklists, and domain-specific knowledge files
 
-**One repo, thirteen platforms.** Works natively as Claude Code plugins, Codex agent skills, Gemini CLI skills, Hermes Agent skills, Mistral Vibe skills, and converts to more tools via `scripts/convert.sh`. All 579 Python tools run anywhere Python runs.
+**One repo, thirteen platforms.** Works natively as Claude Code plugins, Codex agent skills, Gemini CLI skills, Hermes Agent skills, Mistral Vibe skills, and converts to more tools via `scripts/convert.sh`. All 582 Python tools run anywhere Python runs.
 
 ### Skills vs Agents vs Personas
 
@@ -108,7 +108,7 @@ git clone https://github.com/alirezarezvani/claude-skills.git
 
 ## Multi-Tool Support (New)
 
-**Convert all 345 skills to 9 AI coding tools** with a single script:
+**Convert all 346 skills to 9 AI coding tools** with a single script:
 
 | Tool | Format | Install |
 |------|--------|---------|
@@ -139,7 +139,7 @@ find .cursor/rules -name "*.mdc" | wc -l  # Should show 346
 ```
 
 **Each tool gets:**
-- ✅ All 345 skills converted to native format
+- ✅ All 346 skills converted to native format
 - ✅ Per-tool README with install/verify/update steps
 - ✅ Support for scripts, references, templates where applicable
 - ✅ Zero manual conversion work
@@ -150,7 +150,7 @@ Run `./scripts/convert.sh --tool all` to generate tool-specific outputs locally.
 
 ## Skills Overview
 
-**345 skills across 17 domains:**
+**346 skills across 17 domains:**
 
 | Domain | Skills | Highlights | Details |
 |--------|--------|------------|---------|
@@ -305,7 +305,7 @@ for MDR Annex II compliance gaps.
 
 ## Python Analysis Tools
 
-579 CLI tools ship with the skills (all verified, stdlib-only):
+582 CLI tools ship with the skills (all verified, stdlib-only):
 
 ```bash
 # SaaS health check
@@ -352,7 +352,7 @@ Yes. Skills work natively with 13 tools: Claude Code, OpenAI Codex, Gemini CLI, 
 No. We follow semantic versioning and maintain backward compatibility within patch releases. Existing script arguments, plugin source paths, and SKILL.md structures are never changed in patch versions. See the [CHANGELOG](CHANGELOG.md) for details on each release.
 
 **Are the Python tools dependency-free?**
-Yes. All 579 Python CLI tools use the standard library only — zero pip installs required. Every script is verified to run with `--help`.
+Yes. All 582 Python CLI tools use the standard library only — zero pip installs required. Every script is verified to run with `--help`.
 
 **How do I create my own Claude Code skill?**
 Each skill is a folder with a `SKILL.md` (frontmatter + instructions), optional `scripts/`, `references/`, and `assets/`. See the [Skills & Agents Factory](https://github.com/alirezarezvani/claude-code-skills-agents-factory) for a step-by-step guide.
