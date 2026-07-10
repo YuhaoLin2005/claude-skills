@@ -401,6 +401,12 @@ def check_auto_signals():
 
 
 def main():
+    if "--help" in sys.argv:
+        print("Usage: health-check.py [--help]", file=sys.stderr)
+        print("SessionStart hook: checks disk, RAM, GPU, config integrity,", file=sys.stderr)
+        print("self-model staleness, growth-log freshness, and degradation gates.", file=sys.stderr)
+        sys.exit(0)
+
     # Read SessionStart payload for source field
     payload = read_stdin()
     source = payload.get("source", "")
