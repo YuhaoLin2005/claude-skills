@@ -1,32 +1,6 @@
 ---
 name: self-model-regeneration
-description: >
-  Gives AI coding agents persistent identity across sessions via a 5-step mechanical
-  feedback loop. When the agent's self-model (capabilities, growth areas, warnings, goals)
-  becomes stale relative to accumulated growth data, this skill triggers automatic
-  regeneration at the next SessionStart — when AI attention is freshest. Four of five
-  steps are mechanized Python scripts; only the creative synthesis of new growth data
-  into an updated self-model requires AI judgment.
-
-  Trigger phrases: "regenerate my self-model", "update my identity model", "self-model is
-  stale", "check self-model freshness", "run quality-gate", "identity drift detected",
-  "growth accumulated but self-model not updated", "recalibrate my self-assessment".
-
-  Expected output: An updated self-model.md synthesized from recent growth-log entries
-  and ratings data, with 3-version rotation for rollback safety; a JSONL audit trail
-  recording the regeneration event with old and new versions plus trigger reason.
-
-  Behavioral constraints: NEVER regenerates without the `.self-model-stale` flag as
-  trigger — the flag is the sole causal evidence. NEVER skips the 3-version rotation
-  (only rollback mechanism). NEVER hand-edits the flag file (breaks causal chain).
-  NEVER conflates with handoff — handoff transfers task context (WHAT was done),
-  self-model maintains agent identity (WHO is doing it). Regeneration at SessionStart
-  only (AI attention peak), never at Stop (attention trough).
-
-  Complements: handoff (productivity) for task context, named-persona-adversarial-review
-  (engineering-team) for bias-aware review, self-improving-agent (engineering-team) for
-  memory curation, capture (productivity) for insight capture. This is the identity
-  persistence layer — the "who am I" that makes "what did I do" meaningful across sessions.
+description: Persists AI agent identity across sessions via a 5-step mechanical feedback loop. Detects when the agent's self-model is stale relative to growth data and triggers regeneration at SessionStart when AI attention is freshest.
 ---
 
 # Self-Model Regeneration Loop
