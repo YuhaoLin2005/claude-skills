@@ -48,7 +48,7 @@ When skills are published to **ClawHub** (clawhub.com):
 | [cs-project-manager](project-management/cs-project-manager.md) | PM | Project management with Atlassian integration |
 | [cs-quality-regulatory](ra-qm-team/cs-quality-regulatory.md) | RA/QM | Regulatory affairs and quality management |
 
-**Template Available**: `templates/agent-template.md` (318 lines) - Use this to create new agents
+**Template Available**: See `templates/` directory (318 lines) - Use this to create new agents
 
 ### Agent vs Skill
 

@@ -1,6 +1,6 @@
 ---
 name: self-model-regeneration
-description: Gives AI coding agents persistent identity across sessions via a 5-step mechanical feedback loop. Detects staleness through filesystem timestamps, triggers regeneration at SessionStart, and maintains a JSONL audit trail. Four of five steps are mechanized Python scripts. Use when growth data accumulates without self-model updates.
+description: Persists AI agent identity across sessions through a self-referential feedback loop with dual-layer architecture (filesystem + neural verification). Detects staleness through mtime comparison, triggers regeneration at SessionStart (AI attention peak), enforces 24h cooling period and circuit breaker (Netflix ChAP pattern). 4 of 5 steps mechanized; JSONL audit trail with crash-consistent write ordering. Complements handoff (task context) and persona-review (bias detection).
 ---
 
 # Self-Model Regeneration Loop
@@ -32,13 +32,25 @@ After setup: write a growth-log entry after each meaningful session. When qualit
 
 ## Problem
 
-AI coding agents suffer from a fundamental amnesia problem. Each session starts fresh — the agent doesn't remember what it learned, what patterns it discovered, or what mistakes it's prone to. Handoff documents help transfer task context, but they don't maintain the agent's *self-knowledge*: its calibrated sense of its own capabilities, its accumulated warnings about cognitive biases, its evolving goals.
+AI coding agents suffer from a structural constraint: their verification loop and generation loop share the same natural-language channel. An agent cannot independently verify its own NL output — it can only produce more NL claiming the first was correct. This is not a bug; it is an architectural property we call the **Prose Barrier**.
 
-Without persistent identity: growth patterns discovered in one session are forgotten in the next, and there's no cumulative learning — each session is a reset.
+Without mechanical checks that bypass the NL channel: growth patterns discovered in one session are forgotten in the next, config rules can be declared but never executed, and the claim "the system is working" is indistinguishable from the system actually working. The self-model regeneration loop is a filesystem-level workaround: mechanical scripts check file timestamps, exit codes, and hook wiring — facts, not self-assessments.
 
 ## Solution
 
-A five-step mechanical feedback loop:
+A self-referential feedback loop with **dual-layer architecture**:
+
+**Filesystem layer** (bypasses Prose Barrier — checks file state, not NL content):
+- quality-gate.py writes `.self-model-stale` flag (mtime comparison)
+- health-check.py detects flag at SessionStart (24h cooling period enforced)
+- log-regeneration.py deletes flag + writes JSONL audit trail (crash-consistent ordering)
+- Circuit breaker (Netflix ChAP): 3 consecutive validation failures → halt until manual reset
+
+**Neural layer** (works within Prose Barrier — detects constraint echo in output):
+- neural-gate.py checks whether behavioral constraints appear in session output
+- Claim-gate verifies claims against evidence (e.g. "PR merged" vs GitHub API)
+
+4 of 5 steps are mechanized Python scripts. Only the creative synthesis of growth data into an updated self-model requires AI judgment — executed at SessionStart when AI attention is freshest.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
