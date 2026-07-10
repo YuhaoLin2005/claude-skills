@@ -1,6 +1,6 @@
 ---
 name: self-model-regeneration
-description: Persists AI agent identity across sessions via a 5-step mechanical feedback loop. Detects when the agent's self-model is stale relative to growth data and triggers regeneration at SessionStart when AI attention is freshest.
+description: Gives AI coding agents persistent identity across sessions via a 5-step mechanical feedback loop. Detects staleness through filesystem timestamps, triggers regeneration at SessionStart, and maintains a JSONL audit trail. Four of five steps are mechanized Python scripts. Use when growth data accumulates without self-model updates.
 ---
 
 # Self-Model Regeneration Loop
