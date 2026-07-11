@@ -13,11 +13,11 @@ We present evidence that encoding the same constraint in **syllogistic causal fo
 
 ## 2. Discovery: One Rule, Two Forms
 
-Over ~50 coding sessions, imperative-form rules were violated in ~30% of complex sessions, primarily through mid-session forgetting. A cross-disciplinary panel proposed converting rules from imperative to syllogistic form — aligning linguistic structure with transformer autoregressive processing.
+**Baseline (imperative form)**: Retrospective coding of 34 growth-log sessions (2026-06-25 to 2026-07-10, single rater) found documented rule violations in 55.9% of sessions (19/34). Most frequent: pre-action checks skipped (44.1%, 15/34), Read-after-Write omitted (35.3%, 12/34), learning capture skipped (29.4%, 10/34), dual-pool review skipped (23.5%, 8/34), self-audit omitted (20.6%, 7/34). True rates are likely higher — growth-logs only capture violations subsequently discovered. Inter-rater reliability remains unestablished (single coder).
 
-Five rules were converted: dual-pool enforcement, Read-after-Write verification, pre-action calibration, learning capture, and adversarial self-audit.
+A cross-disciplinary panel proposed converting rules from imperative to syllogistic form — aligning linguistic structure with transformer autoregressive processing. Five rules were converted.
 
-### Behavioral Results (n=4 sessions, ~30 observations)
+### Behavioral Results — Syllogism (n=4 sessions, ~30 observations)
 
 | Rule | Triggers | Violations | Emergent Behaviors |
 |------|:--:|:--:|------|
@@ -29,7 +29,9 @@ Five rules were converted: dual-pool enforcement, Read-after-Write verification,
 
 **Emergent behaviors** (uninstructed): discovered double-definition bug, found cross-file threshold inconsistency, identified 7 imprecise phrasings, caught formatting error, correctly distinguished completed vs. planned experiments when asked to mark all as "done."
 
-**Baseline**: imperative-form sessions ~30% violation, zero proactive auditing.
+### Pilot A/B: Syllogism vs. Imperative (n=2, single task)
+
+A preliminary between-subjects pilot (n=1 per condition, identical task: "edit health-check.py, change WARN_DISK_GB from 30 to 35, verify") was conducted on DeepSeek V4 Pro. The syllogism-form agent used 5 tool calls and verified naturally without explicit rule invocation; the imperative-form agent used 3 tool calls and explicitly formatted output as "Rule 5 final check" checklist items. The syllogism agent performed more substantive verification (extra Read calls) despite no explicit command to do so. n=1 per condition precludes statistical inference; controlled replication with n≥20/condition is required.
 
 ## 3. Mechanism: Attention Routing Hypothesis
 
@@ -50,9 +52,9 @@ Pender (2026, Zenodo) independently showed logical/relational prompts induce a *
 
 ## 5. Validation Status
 
-**Completed**: 3-session blind cross-validation (15/15 triggers, 0 violations), in-session validation (4 tasks, ~10 triggers), mechanism alignment (Pender 2026).
+**Completed**: 3-session blind cross-validation (15/15 triggers, 0 violations), in-session validation (4 tasks, ~10 triggers), mechanism alignment (Pender 2026), retrospective baseline coding (34 growth-logs, 55.9% violation rate documented), pilot A/B test (n=1/condition, syllogism agent showed deeper verification behavior).
 
-**Remaining**: cross-model replication (Claude, GPT-4), larger-n A/B test (n≥20 between-subject), direct attention routing analysis (needs local model), degradation resistance (30-turn controlled), imperative baseline (controlled A/B).
+**Remaining**: full A/B test (n≥20 between-subject, protocol designed but not executed — requires fresh sessions), cross-model replication (Claude, GPT-4), attention routing analysis (needs local model), degradation resistance (30-turn controlled), second rater for retrospective coding (κ pending).
 
 ## 6. Three-Layer Architecture
 
@@ -69,7 +71,7 @@ Three layers, one pipeline: arrival → penetration → routing. None replaces t
 
 ## 7. Limitations
 
-Small n (4 sessions, single model, within-subject), no direct attention measurement (Pender citation only), rule selection bias (high-violation-rate rules chosen), Hawthorne effect (researcher knew hypothesis). All require larger-n, blinded, cross-model follow-up.
+Small n for syllogism condition (4 sessions, within-subject, no controlled imperative baseline — addressed with pilot A/B but n=1/condition is insufficient), no direct attention measurement (Pender citation only), rule selection bias (high-violation-rate rules chosen), Hawthorne effect (researcher knew hypothesis), single rater for retrospective coding (κ pending). All require larger-n, blinded, cross-model follow-up. Full A/B protocol designed (3 task types × 7 runs × 2 conditions = 42 trials, between-subjects, blind scoring) but not yet executed.
 
 ## 8. Conclusion
 
