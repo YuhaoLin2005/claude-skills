@@ -22,6 +22,7 @@ v2.2 (2026-07-11): Updated docstring to accurately reflect all 15 check function
 v2.1 (2026-07-03): Added .last-regeneration cooling-period enforcement.
 """
 
+from __future__ import annotations
 import os, sys, shutil, subprocess, glob, json
 from datetime import date, timedelta, datetime, timezone
 
@@ -32,8 +33,8 @@ STALE_FLAG = os.path.join(MEMORY, ".self-model-stale")
 SELF_MODEL = os.path.join(MEMORY, "self-model.md")
 GROWTH_LOG_DIR = os.path.join(MEMORY, "growth-log")
 LAST_REGENERATION = os.path.join(MEMORY, ".last-regeneration")
-WARN_DISK_GB = 40
-BLOCK_DISK_GB = 25
+WARN_DISK_GB = 35
+BLOCK_DISK_GB = 20
 WARN_TMP_FILES = 500
 WARN_GPU_TEMP_C = 80
 WARN_GPU_VRAM_PCT = 90
