@@ -1,6 +1,6 @@
 # Three Paradigms for AI Agent Configuration Integrity: From Mechanical Defense to Causal Encoding
 
-> Revised 2026-07-10: Academic Researcher + Systems Engineer + Digital Twin + Web Search landscape.
+> Revised 2026-07-11: Academic Researcher + Systems Engineer + Digital Twin + Web Search landscape. Part 3 validation completed.
 > Target: arXiv → CHI LBW → ACL SRW.
 > **Key shift**: Core contribution is NOT "dual-layer gate" — it's the **self-referential closure (strange loop)**.
 
@@ -105,7 +105,7 @@ File-system gates (Part 1) check whether information ARRIVED — scripts exist, 
 
 ## Part 3: Causal Structure Encoding — Format → Routing → Behavior
 
-> Added 2026-07-11. Cross-disciplinary panel (logic/philosophy/anthropology/systems/AI behavior/risk) + 2-session blind cross-validation.
+> Added 2026-07-11. Cross-disciplinary panel (logic/philosophy/anthropology/systems/AI behavior/risk) + 3-session blind cross-validation.
 > Extends Part 1 (mechanical defense) and Part 2 (neural detection) with a third paradigm: encoding behavioral rules as causal structures that change transformer attention routing.
 
 ### Motivation: Beyond "Follow the Rules"
@@ -126,7 +126,7 @@ Over 50+ sessions, imperative-form rules ("You must do X") were violated in ~30%
         如果是: 盲区必然存在→独立视角是唯一的揭示机制。"
 ```
 
-Two-session blind cross-validation: agent with ONLY syllogism-form rules naturally triggered dual-pool review without being commanded, discovered configuration inconsistencies proactively, and maintained rule-consistent behavior. 5/5 syllogism rules triggered correct behavior without explicit commands.
+Three-session blind cross-validation: agent with ONLY syllogism-form rules naturally triggered dual-pool review without being commanded, discovered configuration inconsistencies proactively, and maintained rule-consistent behavior. 5/5 syllogism rules triggered correct behavior without explicit commands.
 
 ### Mechanism: Attention Routing Hypothesis
 
@@ -138,7 +138,7 @@ This is not "better prompt engineering." **The format of a behavioral rule deter
 
 ### Research Questions
 
-1. **RQ1 (Behavioral)**: Does syllogism-form encoding reduce rule violation vs. imperative? [Evidence: 2-session blind cross-validation, 30% → near-zero, 5/5 rules triggered]
+1. **RQ1 (Behavioral)**: Does syllogism-form encoding reduce rule violation vs. imperative? [Evidence: 3-session blind cross-validation, 15/15 rule triggers, 3/3 sessions emergent behaviors, near-zero violation rate]
 
 2. **RQ2 (Mechanistic)**: Do syllogism vs. imperative trigger different attention routing? [Alignment with Pender 2026; direct causal mediation analysis TBD]
 
@@ -165,12 +165,25 @@ Part 1 (Mechanical)       Part 2 (Neural)          Part 3 (Causal Encoding)
           三层覆盖同一管道: 到达 → 穿透 → 路由
 ```
 
-### Experimental Design
+### Validation Status
 
-1. **A/B test**: n=20 sessions/condition, blind. Measure: rule violation, proactive following, self-audit frequency
-2. **Cross-model**: Same rules on DeepSeek V4 vs Claude vs GPT. Measure: behavioral consistency
-3. **Attention analysis** (needs logprobs/local model): Paired syllogism/imperative prompts, compare routing topology (Forman curvature, layer-wise KL)
+**Completed (2026-07-11):**
+
+1. ✅ **3-session blind cross-validation**: n=3 fresh conversations (DeepSeek V4), agent loaded with syllogism-form rules only. Results: 15/15 rule triggers across 3 sessions (5 syllogisms × 3 sessions), 3/3 sessions showed emergent behaviors (self-directed dual-pool review, 4-expert parallel review, auto-discovery of configuration inconsistencies). No imperative commands present — all rule-following was structurally triggered.
+
+2. ✅ **Mechanism grounding (literature)**: Pender (2026, Zenodo) provides independent convergent evidence — logical/relational prompts induce measurably distinct attention routing topologies (Forman curvature, cross-model replication). Our syllogism format aligns with this mechanism class. Cross-model validation (GPT-2, Qwen 0.5B) in Pender's work partially addresses RQ3.
+
+### Remaining Experiments (planned)
+
+1. **Full A/B test**: n=20 sessions/condition (syllogism vs. imperative), blind, with second rater. Measure: rule violation, proactive following, self-audit frequency. Current n=3 provides initial signal but no statistical power.
+
+2. **Cross-model replication**: Same syllogism rules on Claude vs GPT. Measure: behavioral consistency. Only DeepSeek V4 tested so far.
+
+3. **Attention analysis** (needs local model / logprobs API): Paired syllogism/imperative prompts, compare routing topology (Forman curvature, layer-wise KL divergence). Direct causal mediation analysis.
+
 4. **Degradation study**: Over 30-turn sessions, does causal encoding resist mid-session attention decay?
+
+5. **Imperative baseline control**: Current evidence compares syllogism sessions to historical imperative sessions (between-session comparison). A within-session A/B design needed for stronger causal claims.
 
 ### References to Add
 
