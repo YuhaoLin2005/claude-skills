@@ -1,4 +1,4 @@
-# Short Paper: Self-Referential Gate Architecture for Agent Configuration Integrity
+# Three Paradigms for AI Agent Configuration Integrity: From Mechanical Defense to Causal Encoding
 
 > Revised 2026-07-10: Academic Researcher + Systems Engineer + Digital Twin + Web Search landscape.
 > Target: arXiv → CHI LBW → ACL SRW.
