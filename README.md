@@ -29,7 +29,7 @@ Claude Code skills (also called agent skills or coding agent plugins) are modula
 - **Python tools** — 597 CLI scripts (all stdlib-only, zero pip installs)
 - **Reference docs** — 711 templates, checklists, and domain-specific knowledge files
 
-**One repo, thirteen platforms.** Works natively as Claude Code plugins, Codex agent skills, Gemini CLI skills, Hermes Agent skills, Mistral Vibe skills, and converts to more tools via `scripts/convert.sh`. All 593 Python tools run anywhere Python runs.
+**One repo, thirteen platforms.** Works natively as Claude Code plugins, Codex agent skills, Gemini CLI skills, Hermes Agent skills, Mistral Vibe skills, and converts to more tools via `scripts/convert.sh`. All 597 Python tools run anywhere Python runs.
 
 ### Skills vs Agents vs Personas
 
@@ -155,7 +155,7 @@ Run `./scripts/convert.sh --tool all` to generate tool-specific outputs locally.
 | Domain | Skills | Highlights | Details |
 |--------|--------|------------|---------|
 | **🔧 Engineering — Core** | 52 | Architecture, frontend, backend, fullstack, QA, DevOps, SecOps, AI/ML, data, Playwright Pro (test gen, flaky fix, migrations), self-improving agent (auto-memory curation), security suite, a11y audit, **named-persona-adversarial-review** (review via named engineering philosophies) | [engineering-team/](engineering-team/) |
-| **⚡ Engineering — POWERFUL** | 80 | Agent designer, RAG architect, database designer, CI/CD builder, security auditor, MCP builder, AgentHub, Helm charts, Terraform, self-eval, llm-wiki, tc-tracker, autoresearch-agent, **reliability portfolio** (feature-flags-architect, kubernetes-operator, chaos-engineering, slo-architect), ship-gate, security-guidance PreToolUse hook, **Matt Pocock skills** (write-a-skill, caveman, grill-me, handoff, grill-with-docs), **zero-hallucination-coder** (Discuss→Map→Decompose→Execute→Verify) | [engineering/](engineering/) |
+| **⚡ Engineering — POWERFUL** | 81 | Agent designer, RAG architect, database designer, CI/CD builder, security auditor, MCP builder, AgentHub, Helm charts, Terraform, self-eval, llm-wiki, tc-tracker, autoresearch-agent, **reliability portfolio** (feature-flags-architect, kubernetes-operator, chaos-engineering, slo-architect), ship-gate, security-guidance PreToolUse hook, **Matt Pocock skills** (write-a-skill, caveman, grill-me, handoff, grill-with-docs), **zero-hallucination-coder** (Discuss→Map→Decompose→Execute→Verify) | [engineering/](engineering/) |
 | **🎯 Product** | 17 | Product manager, agile PO, strategist, UX researcher, UI design, landing pages, SaaS scaffolder, analytics, experiment designer, discovery, roadmap communicator, code-to-prd, apple-hig-expert | [product-team/](product-team/) |
 | **📣 Marketing** | 48 | 8 pods: Content, SEO + AEO (`aeo` — E-E-A-T audit, citation tracking across 5 LLMs) + local (`local-seo-manager` — GBP/NAP/Map-Pack), CRO, Channels, Growth, Intelligence, Sales + context foundation + orchestration router | [marketing-skill/](marketing-skill/) |
 | **🚀 Productivity** | 8 | `capture` (brain-dump-to-action), `email` pair (inbox-setup + inbox-triage), `reflect` (journal), `handoff` (Matt Pocock-inspired), `andreessen` (market-first decision mode), `roast` (5-angle idea panel → GO/RESHAPE/KILL), `self-model-regeneration` (AI identity persistence across sessions — SessionStart→Stop lifecycle) | [productivity/](productivity/) |
@@ -172,6 +172,7 @@ Run `./scripts/convert.sh --tool all` to generate tool-specific outputs locally.
 | **💰 Finance** | 4 | Financial analyst (DCF, budgeting, forecasting), SaaS metrics coach, business investment advisor | [finance/](finance/) |
 | **🔄 Loop Library** | 1 | `loop-library` — discover, find, audit/repair, adapt, and design bounded AI-agent loops; reads the live catalog from signals.forwardfuture.ai at runtime (vendored verbatim from [Forward-Future/loop-library](https://github.com/Forward-Future/loop-library)) | [loop-library/](loop-library/) |
 | **📄 Markdown → HTML** | 5 | `markdown-html-orchestrator` (doctype router) + `design-system` (WCAG-AA brand tokens) + `md-document` (long-form) + `md-review` (2-col code review) + `md-slides` (single-file deck) — markdown-to-interactive-HTML converter | [markdown-html/](markdown-html/) |
+| **🧩 Skills** | 1 | Root-level skill packages for direct use with Claude Code and other agent harnesses | [skills/](skills/) |
 
 ---
 
