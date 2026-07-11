@@ -1,9 +1,25 @@
 #!/usr/bin/env python3
-"""SessionStart health check — disk/ram/gpu/config/growth. NEVER blocks, always exits 0.
+"""SessionStart health check — comprehensive system diagnostic. NEVER blocks, always exits 0.
 
+Checks performed (15 functions):
+  1. read_stdin()        — Parse SessionStart hook payload for source field
+  2. check_disk()        — Free space on home drive (WARN/BLOCK thresholds)
+  3. check_tmp()         — Temp file count in %LOCALAPPDATA%\Temp
+  4. check_ram()         — Physical memory usage via WMIC
+  5. check_gpu()         — NVIDIA GPU temperature and VRAM usage via nvidia-smi
+  6. check_config()      — Config file size and nested key depth (settings.json)
+  7. check_memory_config() — MEMORY.md HOT entry count and stale entries
+  8. check_degradation_gate() — Root/memory dir missing → degradation flag
+  9. check_growth()      — Growth-log freshness (oldest entry, stale days)
+  10. check_skills()     — Skills directory file count health
+  11. check_cooling_period() — Enforce 24h cooldown between regenerations
+  12. check_self_model_flag() — Detect .self-model-stale flag → REGENERATE_NEEDED
+  13. check_circuit_breaker() — Session count tracking with early-warning threshold
+  14. check_auto_signals() — Scan auto-signal directory for pending signals
+  15. main()             — Orchestrate all checks, output structured status lines
+
+v2.2 (2026-07-11): Updated docstring to accurately reflect all 15 check functions.
 v2.1 (2026-07-03): Added .last-regeneration cooling-period enforcement.
-  Reads stdin for SessionStart source field — only triggers regeneration on "startup".
-  COOLING signal when last regeneration < 24h ago.
 """
 
 import os, sys, shutil, subprocess, glob, json
@@ -16,8 +32,8 @@ STALE_FLAG = os.path.join(MEMORY, ".self-model-stale")
 SELF_MODEL = os.path.join(MEMORY, "self-model.md")
 GROWTH_LOG_DIR = os.path.join(MEMORY, "growth-log")
 LAST_REGENERATION = os.path.join(MEMORY, ".last-regeneration")
-WARN_DISK_GB = 35
-BLOCK_DISK_GB = 15
+WARN_DISK_GB = 40
+BLOCK_DISK_GB = 25
 WARN_TMP_FILES = 500
 WARN_GPU_TEMP_C = 80
 WARN_GPU_VRAM_PCT = 90
