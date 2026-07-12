@@ -172,6 +172,15 @@
             "timeout": 5000
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/verify-pending.py",
+            "timeout": 10000
+          }
+        ]
       }
     ],
     "PreToolUse": [
