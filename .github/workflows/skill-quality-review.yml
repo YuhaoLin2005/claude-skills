@@ -111,7 +111,16 @@ jobs:
           for skill_dir in $(echo "$SKILLS" | python3 -c "import sys,json; [print(s) for s in json.load(sys.stdin)]"); do
             echo "::group::Reviewing $skill_dir"
 
-            JSON_OUT=$(tessl skill review "$skill_dir" --json 2>&1) && EXIT_CODE=$? || EXIT_CODE=$?
+            # Retry tessl up to 3 times (cloud API may have transient failures)
+            for attempt in 1 2 3; do
+              JSON_OUT=$(tessl skill review "$skill_dir" --json 2>&1) && TESSL_EXIT=$? || TESSL_EXIT=$?
+              TESSL_SCORE=$(echo "$JSON_OUT" | python3 -c "
+          import sys,json
+          try: d=json.load(sys.stdin); print(d.get('review',{}).get('reviewScore',0))
+          except: print(0)" 2>/dev/null || echo 0)
+              if [ "$TESSL_SCORE" -gt 0 ] 2>/dev/null; then break; fi
+              [ $attempt -lt 3 ] && sleep 10
+            done
 
             # Parse results
             PARSED=$(echo "$JSON_OUT" | python3 -c "
@@ -123,26 +132,27 @@ jobs:
               cs = round(d.get('contentJudge', {}).get('normalizedScore', 0) * 100)
               passed = d.get('validation', {}).get('overallPassed', False)
               name = d.get('validation', {}).get('skillName', 'unknown')
-
-              # Collect suggestions
               desc_suggestions = d.get('descriptionJudge', {}).get('evaluation', {}).get('suggestions', [])
               content_suggestions = d.get('contentJudge', {}).get('evaluation', {}).get('suggestions', [])
-
               suggestions = []
               for s in desc_suggestions:
                   suggestions.append(f'[description] {s}')
               for s in content_suggestions:
                   suggestions.append(f'[content] {s}')
-
-              print(f'{name}|{score}|{ds}|{cs}|{\"PASS\" if passed else \"FAIL\"}|{json.dumps(suggestions)}')
+              api_error = (score == 0 and ds == 0 and cs == 0)
+              print(f'{name}|{score}|{ds}|{cs}|{\"PASS\" if passed else \"FAIL\"}|{json.dumps(suggestions)}|{\"true\" if api_error else \"false\"}')
           except Exception as e:
-              print(f'unknown|0|0|0|ERROR|[]')
-          " 2>/dev/null || echo "unknown|0|0|0|ERROR|[]")
+              print(f'unknown|0|0|0|ERROR|[]|true')
+          " 2>/dev/null || echo "unknown|0|0|0|ERROR|[]|true")
 
-            IFS='|' read -r NAME SCORE DS CS VSTATUS SUGGESTIONS <<< "$PARSED"
+            IFS='|' read -r NAME SCORE DS CS VSTATUS SUGGESTIONS API_ERR <<< "$PARSED"
 
             # Determine verdict
-            if [ "$SCORE" -ge "$THRESHOLD" ]; then
+            if [ "$API_ERR" = "true" ]; then
+              ICON="🔌"
+              VERDICT="API UNAVAILABLE (skipped)"
+              echo "::warning::Tessl API unavailable for $skill_dir — check network/tessl.io status"
+            elif [ "$SCORE" -ge "$THRESHOLD" ]; then
               ICON="✅"
               VERDICT="PASS"
             else
