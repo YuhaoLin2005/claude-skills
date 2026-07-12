@@ -168,7 +168,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/risk-scanner.py",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/risk-scanner.py 3",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/trial-tick.py",
             "timeout": 5000
           }
         ]
@@ -179,6 +188,24 @@
             "type": "command",
             "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/verify-pending.py",
             "timeout": 10000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/periodic-audit.py",
+            "timeout": 10000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/neural-gate-v2.py",
+            "timeout": 35000
           }
         ]
       }

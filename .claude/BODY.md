@@ -82,6 +82,8 @@
 - 数据冗余→设计时约束（同一事实只在1处定义·行为约束以INTERFACE.md为权威来源）
 - 规则空转>30session→静默标记
 
+Importers: BODY.md is read by the AI at session startup via CLAUDE.md §启动. API: none (config file). Schema: markdown with startup output format spec. User instruction: "要" — execute the 3 fixes for the startup signalization trial.
+
 ### 启动输出格式
 ```
 # 无信号: 不输出任何启动报告
@@ -89,6 +91,7 @@
 ⚠️ risk-scanner: HIGH — [信号描述] → ACTION: [具体操作]
 ⚠️ 待验证: N项(🔴+🟡) → ACTION: 关注[具体条目]
 ⚠️ stale-flag: self-model需再生 → ACTION: 执行奇异环再生
+⏰ trial: [试运行名] [N]/[threshold] session → 到期前密切关注
 ```
 
 ### 保留规则（不变·移至此处集中）
