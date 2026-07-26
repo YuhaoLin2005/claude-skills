@@ -1,14 +1,366 @@
 {
-    "$schema": "https://json.schemastore.org/claude-code-settings.json",
-    "extraKnownMarketplaces": {
-        "ecc": {
-            "source": {
-                "source": "github",
-                "repo": "affaan-m/ECC"
-            }
-        }
-    },
-    "enabledPlugins": {
-        "ecc@ecc": true
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 60,
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_MODEL": "deepseek-v4-pro[1m]",
+    "API_TIMEOUT_MS": "300000",
+    "CLAUDE_CODE_ATTRIBUTION_HEADER": "0",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK": "1",
+    "DISABLE_COST_WARNINGS": "1",
+    "CLAUDE_CODE_EFFORT_LEVEL": "high",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "28000",
+    "MAX_MCP_OUTPUT_TOKENS": "25000",
+    "ENABLE_TOOL_SEARCH": "false",
+
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "200000"
+  },
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf /*)",
+      "Bash(del /f /s C:*)"
+    ],
+    "allow": [
+      "Bash(cd *)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(grep *)",
+      "Bash(wc *)",
+      "Bash(which *)",
+      "Bash(echo *)",
+      "Bash(date *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(pwd *)",
+      "Bash(export *)",
+      "Bash(source *)",
+      "Bash(du *)",
+      "Bash(df *)",
+      "Bash(set *)",
+      "Bash(mkdir *)",
+      "Bash(rm *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(chmod *)",
+      "Bash(sed *)",
+      "Bash(iconv *)",
+      "Bash(perl *)",
+      "Bash(unzip *)",
+      "Bash(curl *)",
+      "Bash(sc *)",
+      "Bash(reg *)",
+      "Bash(netstat *)",
+      "Bash(setx *)",
+      "Bash(winget *)",
+      "Bash(cmd.exe *)",
+      "Bash(powershell *)",
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(yarn *)",
+      "Bash(pnpm *)",
+      "Bash(cargo *)",
+      "Bash(conda *)",
+      "Bash(pip *)",
+      "Bash(pip3 *)",
+      "Bash(node *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(rtk *)",
+      "Bash(uvx *)",
+      "Bash(where *)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" *)",
+      "Bash(\"/c/Program Files/PostgreSQL/17/bin/psql.exe\" *)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Agent(*)",
+      "Skill(*)",
+      "Task(*)",
+      "NotebookEdit(*)",
+      "Read(//c/**)",
+      "Read(//tmp/**)",
+      "mcp__context7__*",
+      "mcp__playwright__*",
+      "mcp__github__*",
+      "mcp__parallel-search__*",
+      "Bash(nvidia-smi *)",
+      "Bash(wmic cpu *)",
+      "Bash(systeminfo)",
+      "Bash(wmic memorychip *)",
+      "Bash(wmic computersystem *)",
+      "Bash(gh search *)",
+      "Bash(gh repo *)",
+      "Bash(gh api *)",
+      "Bash(/c/Users/86131/AppData/Local/Programs/Python/Python312/python.exe *)",
+      "Bash(gh auth *)",
+      "Bash(rtk git *)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "enabledMcpjsonServers": [
+    "context7",
+    "parallel-search",
+    "playwright",
+    "github"
+  ],
+  "includeCoAuthoredBy": false,
+  "enableAllProjectMcpServers": false,
+  "statusLine": {
+    "type": "command",
+    "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/statusline.py",
+    "padding": 0
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/health-check.py",
+            "timeout": 15000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/claim-validator.py",
+            "timeout": 10000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/session-snapshot.py",
+            "timeout": 30000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/compact-counter.py",
+            "timeout": 15000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/hook-audit.py",
+            "timeout": 10000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/risk-scanner.py 3",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/trial-tick.py",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/verify-pending.py",
+            "timeout": 10000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/periodic-audit.py",
+            "timeout": 10000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/neural-gate-v2.py",
+            "timeout": 35000
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/c/Users/86131/.cargo/bin/rtk.exe hook claude",
+            "timeout": 2000
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/write-guard.py",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/pre-agent-guard.py",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/fact-check-hook.py",
+            "timeout": 15000
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/precompact-guard.py",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/mid-session-check.py",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/config-health.py --hook",
+            "timeout": 8000
+          },
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/quality-gate.py",
+            "timeout": 30000
+          },
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/claim-gate.py",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/usage-tracker-stop.py",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/heartbeat.py",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/review-logger.py",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/honesty-check.py",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/neural-gate.py",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/86131/AppData/Local/Programs/Python/Python312/python.exe C:/Users/86131/.claude/scripts/subagent-gate.py",
+            "timeout": 8000
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "commit-commands@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "ecc@ecc": true
+  },
+  "alwaysThinkingEnabled": true,
+  "autoCompactWindow": 400000,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "autoCompactEnabled": true,
+  "fileCheckpointingEnabled": true,
+  "showTurnDuration": true,
+  "todoFeatureEnabled": true,
+  "extraKnownMarketplaces": {
+    "ecc": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/ECC"
+      }
     }
+  }
 }
